@@ -42,4 +42,28 @@ public:
             return false;
         }
     }
+
+    // Returns the book and marks it as available again
+    void returnBook() {
+        isAvailable = true;
+        cout << "Thank you! \"" << title << "\" has been returned." << endl;
+    }
+
+    // Getter - lets main() read the ISBN to search with
+    string getIsbn() {
+        return isbn;
+    }
+
+    // Sorts the array of books by ISBN using bubble sort
+    static void sortBookData(Book arr[], int size) {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (arr[j].isbn > arr[j + 1].isbn) {
+                    Book temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
 };
