@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Book.h"
 #include "Author.h"
+#include "Library.h"
 using namespace std;
 
 int main() {
@@ -95,6 +96,40 @@ int main() {
 
     cout << "\nAfter sort:" << endl;
     for (int i = 0; i < 3; i++) mixArr[i].displayBookDetails();
+
+    cout << "\n======================================" << endl;
+    cout << "  LIBRARY TESTS" << endl;
+    cout << "======================================" << endl;
+
+    Library lib;
+
+    // Test addBook and displayAllBooks
+    cout << "\n-- Test: Add books and display --" << endl;
+    Book lb1, lb2, lb3;
+    lb1.setBookDetails("The Great Gatsby", Author("F. Scott", "Fitzgerald"), "1001", "2020-01-15");
+    lb2.setBookDetails("1984", Author("George", "Orwell"), "1002", "2021-03-22");
+    lb3.setBookDetails("Pride and Prejudice", Author("Jane", "Austen"), "1003", "2018-11-05");
+    lib.addBook(lb1);
+    lib.addBook(lb2);
+    lib.addBook(lb3);
+    lib.displayAllBooks();
+
+    // Test sortBooks
+    cout << "\n-- Test: Sort books --" << endl;
+    lib.sortBooks();
+    lib.displayAllBooks();
+
+    // Test borrowBook with valid ISBN
+    cout << "\n-- Test: Borrow existing book --" << endl;
+    lib.borrowBook("1001");
+
+    // Test borrowBook with already borrowed book
+    cout << "\n-- Test: Borrow already borrowed book --" << endl;
+    lib.borrowBook("1001");
+
+    // Test borrowBook with invalid ISBN
+    cout << "\n-- Test: Borrow non-existent book --" << endl;
+    lib.borrowBook("9999");
 
     cout << "\n======================================" << endl;
     cout << "  ALL TESTS COMPLETE" << endl;
